@@ -5,7 +5,13 @@
 <%= @car.model %>
 <%= @car.year %>
 <%= @car.fuel %>
-<%= link_to "Add review", new_car_review_path(@car) %>
+
+<%= simple_form_for [@car, @review] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :rating %>
+  <%= f.button :submit %>
+<% end %>
+
 </div>
 
 <div class="container">
@@ -17,4 +23,13 @@
 <% end %>
 
 </div>
+
+<% if @car.favourites.empty? %>
+  <%= simple_form_for [@car, @favourite] do |f| %>
+    <%= f.button :submit %>
+    <% end %>
+    <% else %>
+    <%= "Car is in the garage" %>
+  <% end %>
+
 <%= link_to "Back to cars", cars_path %>
