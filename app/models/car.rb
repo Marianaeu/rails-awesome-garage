@@ -6,5 +6,5 @@ class Car < ApplicationRecord
   validates :brand, presence: true
   validates :year, presence: true, length: { is: 4 }
   validates :fuel, presence: true, inclusion: { in: %w(petrol diesel electric), message: "%{value} is not a valid fuel" }
-    validates :brand, uniqueness: {scope: [:model,:owner_id], message: "A owner can have a brand once" }
+  validates :brand, uniqueness: {scope: [:model,:owner_id], message: "A owner can have a brand once" }
 end
